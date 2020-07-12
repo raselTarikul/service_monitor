@@ -12,16 +12,17 @@ from .models import ServiceMonitorLog
 
 def log_status(site: str, url: str, is_up: bool):
     """
-    Log ststus 
-  
+    Log ststus
+
     Save the status into a database for every url check.
-  
-    Parameters: 
+
+    Parameters:
     site (str): Site Name
     url (str): Url of the site
     is_up (bool): The status of the url check
     """
     ServiceMonitorLog.objects.create(site=site, url=url, is_up=is_up)
+
 
 def get_url_data(csv_file_path: str):
     """
@@ -38,6 +39,7 @@ def get_url_data(csv_file_path: str):
     with open(csv_file_path, "r", encoding="latin-1") as url_records:
         for url_records in csv.reader(url_records):
             yield url_records
+
 
 def check_status(site: str, url: str):
     """
@@ -58,16 +60,19 @@ def check_status(site: str, url: str):
     except ConnectionError:
         log_status(site, url, False)
 
+
 def monitor_urls():
     """
     Monitor Urls
 
     Read the csv file form path and process request
     """
-    all_files = [f for f in listdir(settings.CSV_PATH) if isfile(join(settings.CSV_PATH, f))]
+    all_files = [f for f in listdir(
+        settings.CSV_PATH) if isfile(join(settings.CSV_PATH, f))]
     if all_files:
-        for url in get_url_data(settings.CSV_PATH+all_files[0]):
+        for url in get_url_data(settings.CSV_PATH + all_files[0]):
             check_status(url[0], url[1])
+
 
 @task(name='monitor_urls_task')
 def monitor_urls_task():

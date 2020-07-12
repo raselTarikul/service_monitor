@@ -1,7 +1,6 @@
 import json
 from datetime import timedelta
 from django.utils import timezone
-from django.shortcuts import render
 from django.http import HttpResponse
 from .models import ServiceMonitorLog
 
@@ -20,6 +19,8 @@ def summary(request):
     data['total_up'] = logs.filter(is_up=True).count()
     data['total_down'] = logs.filter(is_up=False).count()
     data['unique_sites'] = logs.values('site').distinct().count()
-    data['unique_up_sites'] = logs.filter(is_up=True).values('site').distinct().count()
-    data['unique_down_sites'] = logs.filter(is_up=False).values('site').distinct().count()
+    data['unique_up_sites'] = logs.filter(
+        is_up=True).values('site').distinct().count()
+    data['unique_down_sites'] = logs.filter(
+        is_up=False).values('site').distinct().count()
     return HttpResponse(json.dumps(data), content_type="application/json")

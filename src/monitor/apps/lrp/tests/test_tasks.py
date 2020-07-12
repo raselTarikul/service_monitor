@@ -9,7 +9,8 @@ from django.urls import reverse
 from django.conf import settings
 
 from monitor.apps.lrp.models import ServiceMonitorLog
-from monitor.apps.lrp.tasks import log_status, get_url_data, check_status, monitor_urls
+from monitor.apps.lrp.tasks import (
+    log_status, get_url_data, check_status, monitor_urls)
 
 
 class MockResponse(object):
@@ -24,11 +25,13 @@ class MockResponse(object):
     def json(self):
         return self.json_data
 
+
 class TestTasks(TestCase):
+
     def setUp(self):
         self.url = reverse('summary')
         self.client = Client()
-        self.csv_path = settings.CSV_PATH+'mycsv.csv'
+        self.csv_path = settings.CSV_PATH + 'mycsv.csv'
         if os.path.exists(self.csv_path):
             os.remove(self.csv_path)
 
@@ -40,7 +43,8 @@ class TestTasks(TestCase):
 
     def test_log_status(self):
         log_status('create test', 'http://createtest.com', True)
-        self.assertEqual(ServiceMonitorLog.objects.filter(site='create test').count(), 1)
+        self.assertEqual(ServiceMonitorLog.objects.filter(
+            site='create test').count(), 1)
 
     def test_get_url_data(self):
         data = get_url_data(self.csv_path)
@@ -59,14 +63,8 @@ class TestTasks(TestCase):
     def test_monitor_urls(self, get_url_data, mock_request):
         ServiceMonitorLog.objects.all().delete()
         get_url_data.return_value = [('test one', 'http://testone.com'),
-                                    ('test two', 'http://testtow.com'),
-                                    ('test three', 'http://testthree.com')]
+                                     ('test two', 'http://testtow.com'),
+                                     ('test three', 'http://testthree.com')]
         mock_request.return_value = MockResponse({}, 200)
         monitor_urls()
         self.assertEqual(ServiceMonitorLog.objects.all().count(), 3)
-
-
-
-
-
-
