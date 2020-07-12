@@ -8,6 +8,11 @@ RUN wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | apt-key
 RUN apt-get update
 RUN apt-get -y install rabbitmq-server
 
+#install mysql
+RUN apt-get -y install mariadb-server
+# Create database
+RUN /etc/init.d/mysql start && mysql -u root -e "CREATE DATABASE service_monitor"
+
 # copy source and install dependencies
 RUN mkdir -p /opt/app
 COPY ./requirements/ /opt/app/requirements/
@@ -16,8 +21,10 @@ RUN pip install -r requirements/dev.txt
 
 ADD . /opt/app
 ADD ./scripts /scripts
+ADD ./csv /csv
 
 RUN chmod +x /scripts/start.sh
+
 
 # start server
 EXPOSE 8000
