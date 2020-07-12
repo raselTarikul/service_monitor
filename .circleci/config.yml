@@ -15,7 +15,3 @@ jobs:
       - run:
           name: Run the tests with tox
           command: tox
-      - store_test_results:
-          path: ./test-reports
-      - store_artifacts:
-          path: ./coverage-reports
