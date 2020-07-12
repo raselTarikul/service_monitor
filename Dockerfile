@@ -22,6 +22,7 @@ RUN pip install -r requirements/dev.txt
 ADD . /opt/app
 ADD ./scripts /scripts
 ADD ./csv /csv
+ADD ./test_csv /test_csv
 
 RUN chmod +x /scripts/start.sh
 

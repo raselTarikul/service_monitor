@@ -14,12 +14,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 # Celery settings
 CELERY_BROKER_URL = "amqp://localhost"
@@ -27,12 +21,14 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Singapore' 
+
+# Celert beat to run the task every 10 minuts
 CELERY_BEAT_SCHEDULE = {
  'task-monitor': {
        'task': 'monitor_urls_task',
-        # There are 4 ways we can handle time, read further 
-       'schedule': 10.0,
+       'schedule': 600.0,
     }     
 }
 
-CSV_PATH = '/csv'
+# path for the csv file
+CSV_PATH = '/csv/'

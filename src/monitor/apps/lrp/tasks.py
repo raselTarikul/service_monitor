@@ -21,7 +21,7 @@ def log_status(site: str, url: str, is_up: bool):
     url (str): Url of the site
     is_up (bool): The status of the url check
     """
-    ServiceMonitorLog.objects.create(site=site, url=url, is_up=True)
+    ServiceMonitorLog.objects.create(site=site, url=url, is_up=is_up)
 
 def get_url_data(csv_file_path: str):
     """
@@ -77,4 +77,3 @@ def monitor_urls_task():
     A long running background task runes every 10 minuts
     """
     monitor_urls()
-    
