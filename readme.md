@@ -4,7 +4,7 @@ This project is on response of the given task
 Solutions: I have build the on top of a Django a python framework. The long running task is managed by Celery a python package for running long running process in baground. you can find the code for the long running task on /src/monitor/apps/lrp/task.py. Thes task result is logged in to a databse table. The process runs on every 10th minute on clock time by celery beat.
 
 ### Installation
-open your terminal and go inside the project directory. 
+Put the csv file on the csv directory. The file must be on the given formate as on the instruction. Now open your terminal and go inside the project directory. 
 
 Build docker image:
 
