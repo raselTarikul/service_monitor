@@ -10,6 +10,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Create dircetory
+          command: sudo mkdir -m 0777 -p /test_csv
+      - run:
           name: Install tox
           command: pip install tox
       - run:
