@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="3" failures="0" name="pytest" skipped="0" tests="3" time="0.150"><testcase classname="" file="src/monitor/apps/lrp/tests/test_models.py" name="src.monitor.apps.lrp.tests.test_models" time="0.000"><error message="collection failure">ImportError while importing test module &apos;/Users/tarikul/Documents/service_monitor/service_monitor/src/monitor/apps/lrp/tests/test_models.py&apos;.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+src/monitor/__init__.py:1: in &lt;module&gt;
+    from .celery import app as celery_app
+src/monitor/celery.py:2: in &lt;module&gt;
+    from celery import Celery
+E   ModuleNotFoundError: No module named &apos;celery&apos;</error></testcase><testcase classname="" file="src/monitor/apps/lrp/tests/test_tasks.py" name="src.monitor.apps.lrp.tests.test_tasks" time="0.000"><error message="collection failure">ImportError while importing test module &apos;/Users/tarikul/Documents/service_monitor/service_monitor/src/monitor/apps/lrp/tests/test_tasks.py&apos;.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+src/monitor/__init__.py:1: in &lt;module&gt;
+    from .celery import app as celery_app
+src/monitor/celery.py:2: in &lt;module&gt;
+    from celery import Celery
+E   ModuleNotFoundError: No module named &apos;celery&apos;</error></testcase><testcase classname="" file="src/monitor/apps/lrp/tests/test_views.py" name="src.monitor.apps.lrp.tests.test_views" time="0.000"><error message="collection failure">ImportError while importing test module &apos;/Users/tarikul/Documents/service_monitor/service_monitor/src/monitor/apps/lrp/tests/test_views.py&apos;.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+src/monitor/__init__.py:1: in &lt;module&gt;
+    from .celery import app as celery_app
+src/monitor/celery.py:2: in &lt;module&gt;
+    from celery import Celery
+E   ModuleNotFoundError: No module named &apos;celery&apos;</error></testcase></testsuite>
